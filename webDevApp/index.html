@@ -8,10 +8,7 @@
 </head>
 <body>
     <div id = "app">
-
-        <h1>{{ text }}</h1>
-        <br>
-        <button @click="printList()">Print List</button>
+        
         
             <!--Make table displaying entries-->
         <table border="1" width="100%" style="border-collapse: separate;">
@@ -24,7 +21,7 @@
                 <th>Email</th>
                 <th>Category</th>
             </tr>
-
+            <form>
             <!--Create text fields for user to enter each piece of data per record-->
             <tr>
                 <td>
@@ -45,9 +42,10 @@
 
                 <!--Add new records to the database-->
                 <td>
-                    <input type="button" value="Add" @click="addToList()">
+                    <input type="reset" value="Add" @click="addRecord()">
                 </td>
             </tr>
+            </form>
 
             <!-- Update/Delete -->
             <tr v-for='(record,index) in records'>

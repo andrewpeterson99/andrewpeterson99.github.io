@@ -2,27 +2,35 @@ var app = new Vue({
     el: "#app",
 
     data: {
-        text: "hi",
         records: [
-            {name: "", address: "", phoneNum: "", email: "", category: ""}
+            {name: "Example Name", address: "Example Address", phoneNum: "Example Phone", email: "Example Email", category: "Example Category"}
         ]
     },
 
     methods: {
-        addToList() {
+        addRecord() {
+
+            //Add the record to the records array
             boxValue = {name: document.getElementById("name").value, 
                         address: document.getElementById("address").value,
                         phoneNum: document.getElementById("phoneNum").value,
                         email: document.getElementById("email").value,
                         category: document.getElementById("category").value};
             this.records.push(boxValue);
-			
+
+            //NOT WORKING
+            //clear the text boxes
+            this.clearBoxes();
+
+			//Save the records array
             this.saveRecords();
         },
 
-        printList(){
+       /* printList(){
+            console.log(JSON.parse(localStorage.getItem("petersonVueDatabase")));
+            //this.records = JSON.parse(localStorage.getItem("petersonVueDatabase"));
             console.log(this.records);
-        },
+        },*/
 
         updateRecord(index){
             this.records[index] = { name: document.getElementById("updatedName").value,
@@ -35,17 +43,33 @@ var app = new Vue({
             },
 
         deleteRecord(index){
+            //console.log("This is the index: " + index)
             this.records.splice(index, 1);
+            this.saveRecords();
         },
 
         saveRecords(){
             localStorage.setItem("petersonVueDatabase", JSON.stringify(this.records));
-        }
+            //console.log(JSON.stringify(this.records));
+            //console.log(JSON.parse(localStorage.getItem("petersonVueDatabase")));
+        },
+
+        clearBoxes(){
+            //Erase the previously entered text by the user
+            document.getElementById("name").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("phoneNum").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("category").value = "";
+
+        },
 
     },
 
     beforeMount() {
-        records = localStorage.getItem("petersonVueDatabase");
-        deleteRecords(this.records.splice(0, 1));
+        if(localStorage.getItem("petersonVueDatabase") != null){
+            this.records = JSON.parse(localStorage.getItem("petersonVueDatabase"));
+        }
+        //deleteRecords(this.records.splice(0, 1));
     }
 })
