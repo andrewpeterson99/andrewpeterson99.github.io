@@ -8,6 +8,8 @@ var app = new Vue({
     },
 
     methods: {
+
+        //Add a record to the table
         addRecord() {
 
             //Add the record to the records array
@@ -26,13 +28,8 @@ var app = new Vue({
             this.saveRecords();
         },
 
-       /* printList(){
-            console.log(JSON.parse(localStorage.getItem("petersonVueDatabase")));
-            //this.records = JSON.parse(localStorage.getItem("petersonVueDatabase"));
-            console.log(this.records);
-        },*/
-
-        updateRecord(index){
+        //Update the record table
+        updateRecord(index) {
             this.records[index] = { name: document.getElementById("updatedName").value,
                             address: document.getElementById("updatedAddress").value,
                             phoneNum: document.getElementById("updatedPhoneNum").value,
@@ -42,20 +39,19 @@ var app = new Vue({
             this.saveRecords();
             },
 
-        deleteRecord(index){
-            //console.log("This is the index: " + index)
+        //Delete a record from the record table
+        deleteRecord(index) {
             this.records.splice(index, 1);
             this.saveRecords();
         },
 
-        saveRecords(){
+        //Save the records
+        saveRecords() {
             localStorage.setItem("petersonVueDatabase", JSON.stringify(this.records));
-            //console.log(JSON.stringify(this.records));
-            //console.log(JSON.parse(localStorage.getItem("petersonVueDatabase")));
         },
 
-        clearBoxes(){
-            //Erase the previously entered text by the user
+        //Erase the previously entered text by the user
+        clearBoxes() {
             document.getElementById("name").value = "";
             document.getElementById("address").value = "";
             document.getElementById("phoneNum").value = "";
@@ -64,12 +60,31 @@ var app = new Vue({
 
         },
 
+        //DOES NOT WORK
+        //TODO: Assign colors to even/odd entries in the table for easier readability
+        assignColors(index) {
+            console.log("called");
+            //is the number even? if so, assign manilla color
+            if(index % 2 == 0){
+                console.log("it's even");
+                document.getElementById("updatedName").style.backgroundColor = "#fdfdb3";
+                document.getElementById("updatedAddress").style.backgroundColor = "#fdfdb3";
+                document.getElementById("updatedPhoneNum").style.backgroundColor = "#fdfdb3";
+                document.getElementById("updatedEmail").style.backgroundColor = "#fdfdb3";
+                document.getElementById("updatedCategory").style.backgroundColor = "#fdfdb3";
+            }
+            //else, assign light blue
+            else{
+                console.log("it's odd");
+            }
+
+        }
+
     },
 
     beforeMount() {
         if(localStorage.getItem("petersonVueDatabase") != null){
             this.records = JSON.parse(localStorage.getItem("petersonVueDatabase"));
         }
-        //deleteRecords(this.records.splice(0, 1));
     }
 })

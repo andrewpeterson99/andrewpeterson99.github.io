@@ -48,26 +48,29 @@
             </form>
 
             <!-- Update/Delete -->
-            <tr v-for='(record,index) in records'>
+            <tr v-for="(record,index) in records">
                 <td>
-                    <input type='text' id="updatedName" v-model="record.name">
+                    <input type="text" id="updatedName" v-model="record.name">
                 </td>
                 <td>
-                    <input type='text' id="updatedAddress" v-model="record.address">
+                    <input type="text" id="updatedAddress" v-model="record.address">
                 </td>
                 <td>
-                    <input type='text' id="updatedPhoneNum" v-model="record.phoneNum">
+                    <input type="text" id="updatedPhoneNum" v-model="record.phoneNum">
                 </td>
                 <td>
-                    <input type='text' id="updatedEmail" v-model="record.email">
+                    <input type="text" id="updatedEmail" v-model="record.email">
                 </td>
                 <td>
-                    <input type='text' id="updatedCategory" v-model='record.category' >
+                    <input type="text" id="updatedCategory" v-model='record.category' >
                 </td>
                 <td>
-                    <input type='button' value='Update' @click='updateRecord(index);'>&nbsp;
-                    <input type='button' value='Delete' @click='deleteRecord(index)'>
+                    <input type="button" value="Update" @click="updateRecord(index);">&nbsp;
+                    <input type="button" value="Delete" @click="deleteRecord(index)">
                 </td>
+
+                <!--TODO: Try to change colors of even/odd cells. This does not work.-->
+                <!--<script>assignColors(index);</script>-->
             </tr>
 
         </table>
@@ -76,6 +79,6 @@
 
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js" type="text/javascript"></script>
 </body>
 </html>
