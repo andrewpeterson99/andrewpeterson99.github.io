@@ -30,11 +30,11 @@ var app = new Vue({
 
         //Update the record table
         updateRecord(index) {
-            this.records[index] = { name: document.getElementById("updatedName").value,
-                            address: document.getElementById("updatedAddress").value,
-                            phoneNum: document.getElementById("updatedPhoneNum").value,
-                            email: document.getElementById("updatedEmail").value,
-                            category: document.getElementById("updatedCategory").value}
+            this.records[index] = { name: document.getElementById("name" + index).value,
+                            address: document.getElementById("address" + index).value,
+                            phoneNum: document.getElementById("phoneNum" + index).value,
+                            email: document.getElementById("email" + index).value,
+                            category: document.getElementById("category" + index).value}
 
             this.saveRecords();
             },
@@ -59,26 +59,6 @@ var app = new Vue({
             document.getElementById("category").value = "";
 
         },
-
-        //DOES NOT WORK
-        //TODO: Assign colors to even/odd entries in the table for easier readability
-        assignColors(index) {
-            console.log("called");
-            //is the number even? if so, assign manilla color
-            if(index % 2 == 0){
-                console.log("it's even");
-                document.getElementById("updatedName").style.backgroundColor = "#fdfdb3";
-                document.getElementById("updatedAddress").style.backgroundColor = "#fdfdb3";
-                document.getElementById("updatedPhoneNum").style.backgroundColor = "#fdfdb3";
-                document.getElementById("updatedEmail").style.backgroundColor = "#fdfdb3";
-                document.getElementById("updatedCategory").style.backgroundColor = "#fdfdb3";
-            }
-            //else, assign light blue
-            else{
-                console.log("it's odd");
-            }
-
-        }
 
     },
 

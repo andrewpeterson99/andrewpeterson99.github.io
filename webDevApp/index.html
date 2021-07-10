@@ -4,14 +4,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebDevApp</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/vue"></script>
 </head>
-<body>
+<body style="background-color:rgb(197, 201, 197)">
     <div id = "app">
         
         
             <!--Make table displaying entries-->
-        <table border="1" width="100%" style="border-collapse: separate;">
+        <table border="1" width="100%" style="border-collapse: separate; background-color: rgb(166, 240, 188);">
 
             <!--Setup table columns-->
             <tr>
@@ -23,21 +24,21 @@
             </tr>
             <form>
             <!--Create text fields for user to enter each piece of data per record-->
-            <tr>
+            <tr class="add-cell">
                 <td>
-                    <input type="text" id="name" v-model="name">
+                    <input type="text" class="textBox"  id="name" v-model="name">
                 </td>
                 <td>
-                    <input type="text" id="address" v-model="address">
+                    <input type="text" class="textBox"  id="address" v-model="address">
                 </td>
                 <td>
-                    <input type="text" id="phoneNum" v-model="phoneNum">
+                    <input type="text" class="textBox"  id="phoneNum" v-model="phoneNum">
                 </td>
                 <td>
-                    <input type="text" id="email" v-model="email">
+                    <input type="text" class="textBox"  id="email" v-model="email">
                 </td>
                 <td>
-                    <input type="text" id="category" v-model="category">
+                    <input type="text" class="textBox"  id="category" v-model="category">
                 </td>
 
                 <!--Add new records to the database-->
@@ -47,30 +48,27 @@
             </tr>
             </form>
 
-            <!-- Update/Delete -->
-            <tr v-for="(record,index) in records">
+            <!-- Update/Delete -->              <!--The : is shorthand for v-bind:-->   <!--assign even-cell if index is even, odd-cell if odd-->
+            <tr v-for="(record,index) in records" :class="(index % 2 == 0) ? 'even-cell' : 'odd-cell'">
                 <td>
-                    <input type="text" id="updatedName" v-model="record.name">
+                    <input type="text" class="textBox" :id="[`name${index}`]" v-model="record.name">
                 </td>
                 <td>
-                    <input type="text" id="updatedAddress" v-model="record.address">
+                    <input type="text" class="textBox"  :id="[`address${index}`]" v-model="record.address">
                 </td>
                 <td>
-                    <input type="text" id="updatedPhoneNum" v-model="record.phoneNum">
+                    <input type="text" class="textBox"  :id="[`phoneNum${index}`]" v-model="record.phoneNum">
                 </td>
                 <td>
-                    <input type="text" id="updatedEmail" v-model="record.email">
+                    <input type="text" class="textBox"  :id="[`email${index}`]" v-model="record.email">
                 </td>
                 <td>
-                    <input type="text" id="updatedCategory" v-model='record.category' >
+                    <input type="text" class="textBox"  :id="[`category${index}`]" v-model='record.category' >
                 </td>
                 <td>
                     <input type="button" value="Update" @click="updateRecord(index);">&nbsp;
                     <input type="button" value="Delete" @click="deleteRecord(index)">
                 </td>
-
-                <!--TODO: Try to change colors of even/odd cells. This does not work.-->
-                <!--<script>assignColors(index);</script>-->
             </tr>
 
         </table>

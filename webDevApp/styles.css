@@ -1,0 +1,15 @@
+.add-cell{
+    background-color: grey;
+}
+
+.even-cell {
+    background-color: bisque;
+}
+
+.odd-cell {
+    background-color: darkseagreen;
+}
+
+.textBox {
+    background-color:rgb(211, 222, 241);
+}
