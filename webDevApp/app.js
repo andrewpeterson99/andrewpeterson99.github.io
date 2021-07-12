@@ -23,11 +23,6 @@ var app = new Vue({
             this.saveRecords();
         },
 
-        //Update the record table
-        updateRecord(index) {
-                this.saveRecords();
-            },
-
         //Delete a record from the record table
         deleteRecord(index) {
             this.records.splice(index, 1);
