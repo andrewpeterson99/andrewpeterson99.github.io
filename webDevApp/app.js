@@ -2,6 +2,7 @@ var app = new Vue({
     el: "#app",
 
     data: {
+        newRecord: {},
         records: [
             {name: "Example Name", address: "Example Address", phoneNum: "Example Phone", email: "Example Email", category: "Example Category"}
         ]
@@ -13,14 +14,8 @@ var app = new Vue({
         addRecord() {
 
             //Add the record to the records array
-            boxValue = {name: document.getElementById("name").value, 
-                        address: document.getElementById("address").value,
-                        phoneNum: document.getElementById("phoneNum").value,
-                        email: document.getElementById("email").value,
-                        category: document.getElementById("category").value};
-            this.records.push(boxValue);
+            this.records.push(this.newRecord);
 
-            //NOT WORKING
             //clear the text boxes
             this.clearBoxes();
 
@@ -30,13 +25,7 @@ var app = new Vue({
 
         //Update the record table
         updateRecord(index) {
-            this.records[index] = { name: document.getElementById("name" + index).value,
-                            address: document.getElementById("address" + index).value,
-                            phoneNum: document.getElementById("phoneNum" + index).value,
-                            email: document.getElementById("email" + index).value,
-                            category: document.getElementById("category" + index).value}
-
-            this.saveRecords();
+                this.saveRecords();
             },
 
         //Delete a record from the record table
@@ -52,12 +41,7 @@ var app = new Vue({
 
         //Erase the previously entered text by the user
         clearBoxes() {
-            document.getElementById("name").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("phoneNum").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("category").value = "";
-
+            this.newRecord = {};
         },
 
     },
